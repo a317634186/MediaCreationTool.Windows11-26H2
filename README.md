@@ -1,7 +1,56 @@
-Not just an Universal MediaCreationTool wrapper script with ingenious support for business editions,  
-<img src="preview.png">  
-A powerful yet simple windows 10 / 11 deployment automation tool as well!  
-*If you had no success launching the script so far, this latest version will work*  
+# MediaCreationTool.bat — Windows 11 26H2
+
+用于下载 Windows 安装镜像和创建安装介质的 Media Creation Tool 包装脚本。本分支新增 **Windows 11 26H2（x64）**，保留原有 Windows 10 和 Windows 11 版本选项。工具和镜像均从微软服务器获取。
+
+## 快速使用
+
+1. 点击仓库 **Code → Download ZIP**，完整解压后运行 `MediaCreationTool.bat`。
+2. 在版本菜单选择 **11_26H2**（默认选项）。
+3. 推荐选择 **MCT Defaults**，按微软工具提示选择语言和版本。
+4. 选择 **ISO 文件**保存镜像，或者选择 **USB 闪存驱动器**制作安装盘。
+
+需要简体中文时，在微软工具中取消“对这台电脑使用推荐的选项”，再选择中文（简体）。制作 USB 安装盘会清除所选 U 盘的数据。
+
+也可以在命令行预选版本，再在弹出的菜单选择预设：
+
+```bat
+MediaCreationTool.bat 11_26H2
+```
+
+`26H2` 和 `2610` 是同一版本的别名。使用 26H2 下载路径建议在 Windows 10/11 上运行，并使用 Windows PowerShell 5.1；本脚本的 26H2 路径支持 x64，不支持 x86 或 ARM64。
+
+## 版本列表
+
+| 系统 | 菜单选项 |
+| --- | --- |
+| Windows 10 | 1507、1511、1607、1703、1709、1803、1809、1903、1909、20H1、20H2、21H1、21H2、22H2 |
+| Windows 11 | 11_21H2、11_22H2、11_23H2、**11_26H2** |
+
+24H2、25H2 和 26H1 尚未加入本脚本。旧版本保留原下载逻辑，其链接可用性取决于微软服务器。
+
+## 26H2 更新说明（2026-10-12）
+
+- 新增 `11_26H2` 菜单项、命令行别名和正确的版本显示。
+- 通过微软更新元数据接口动态获取 `products.cab`，校验文件大小及 SHA256，适配目录格式 2.1。
+- 校验目录中的 x64 镜像确实属于 **26300 / 26H2**；接口返回其他版本时停止，避免误下载。
+- 下载并校验微软 Media Creation Tool 的数字签名，保留镜像 SHA256 和微软原有许可协议链接。
+- 修复 Windows 11 版本选择在提权重启后的恢复，并为版本菜单增加滚动。
+
+2026-10-12 核对的微软镜像目录版本为 **26300.9457**，包含简体中文消费版（家庭版／专业版等）及企业版条目。具体可选版本以微软工具和目录为准。
+
+已验证官方目录下载、目录哈希、工具签名、菜单选择、版本参数、提权选择恢复、目录转换和重新打包，以及错误目录和版本不符时的拒绝处理。简体中文消费版镜像链接已通过 HTTP 可用性检查。
+
+**尚未完成完整 ISO 下载、系统安装、升级或 USB 制作验证。** 原脚本的 Auto Upgrade、自动制盘和绕过硬件检查功能未针对 26H2 做完整安装验证；需要原版安装介质时，推荐使用 **MCT Defaults**。微软目录将来切换到其他版本或改变格式时，需要更新脚本。
+
+官方安装资源：[下载 Windows 11](https://www.microsoft.com/zh-cn/software-download/windows11)。本项目是第三方脚本，并非微软官方工具本身；原始项目来自 [AveYo/MediaCreationTool.bat](https://github.com/AveYo/MediaCreationTool.bat)，遵循仓库中的 [MIT 许可证](LICENSE)。
+
+## Original presets and deployment documentation
+
+The original preset documentation below describes the inherited automation features. This fork adds Windows 11 26H2 x64 catalog support; full installation and upgrade testing for those automation features has not been completed on 26H2. Use **MCT Defaults** for media without the script's setup modifications.
+
+The screenshot shows an earlier version of the menu:
+
+<img src="preview.png" alt="Earlier MediaCreationTool.bat version menu">
 
 Presets  
 -------  
@@ -72,6 +121,10 @@ _We did it! We broke [the previous gist](https://git.io/MediaCreationTool.bat)_ 
 [discuss on MDL](https://forums.mydigitallife.net/threads/universal-mediacreationtool-wrapper-script-create-windows-11-media-with-automatic-bypass.84168/)  
 
 ```
+2026.10.12: Windows 11 26H2 x64 (26300) support in this fork
+            dynamic Microsoft catalog API, SHA256/size and Microsoft MCT signature verification, catalog format 2.1
+            reject non-26H2 catalogs; preserve official EULA links; scroll version menu; restore elevated selection
+
 2018.10.10: reinstated 1809 [RS5]! using native xml patching for products.xml; fixed syntax bug with exit/b
 2018.10.12: added data loss warning for RS5
 2018.11.13: RS5 is officially back! + greatly improved choices dialog - feel free to use the small snippet in your own scripts
