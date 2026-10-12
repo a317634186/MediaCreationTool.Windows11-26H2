@@ -2,11 +2,13 @@
 
 用于下载 Windows 安装镜像和创建安装介质的 Media Creation Tool 包装脚本。本分支新增 **Windows 11 26H2（x64）**，保留原有 Windows 10 和 Windows 11 版本选项。工具和镜像均从微软服务器获取。
 
+提供 TPM 2.0 等安装检查的绕过功能，供 **Intel 芯片的老款苹果 Mac** 等设备尝试安装 Windows 11。当前本分支最新选项为 **26H2**；尚未完成 Intel Mac 实机兼容性验证，不能保证所有机型安装成功。
+
 ## 快速使用
 
 1. 点击仓库 **Code → Download ZIP**，完整解压后运行 `MediaCreationTool.bat`。
 2. 在版本菜单选择 **11_26H2**（默认选项）。
-3. 推荐选择 **MCT Defaults**，按微软工具提示选择语言和版本。
+3. 需要原版安装介质时选择 **MCT Defaults**，按微软工具提示选择语言和版本；Intel 老款 Mac 需要尝试绕过检查时，参阅下方说明。
 4. 选择 **ISO 文件**保存镜像，或者选择 **USB 闪存驱动器**制作安装盘。
 
 需要简体中文时，在微软工具中取消“对这台电脑使用推荐的选项”，再选择中文（简体）。制作 USB 安装盘会清除所选 U 盘的数据。
@@ -18,6 +20,19 @@ MediaCreationTool.bat 11_26H2
 ```
 
 `26H2` 和 `2610` 是同一版本的别名。使用 26H2 下载路径建议在 Windows 10/11 上运行，并使用 Windows PowerShell 5.1；本脚本的 26H2 路径支持 x64，不支持 x86 或 ARM64。
+
+## Intel 老款 Mac：尝试绕过 TPM 2.0 检查
+
+适用于使用 **Intel x64 处理器**、准备安装 Windows 的老款 Mac。这里的系统是 Windows 11，不是 macOS；**不适用于 Apple Silicon（M1、M2、M3、M4 等）**。正确名称为 **TPM 2.0**。
+
+1. 在 Mac 已有的 Windows 环境中运行脚本，或者使用另一台 Windows 电脑准备安装介质；`.bat` 不能直接在 macOS 中运行。
+2. 选择 **11_26H2**，再选择 **Auto ISO**、**Auto USB** 或 **Select**，尝试生成包含脚本安装检查绕过处理的介质。
+3. **不要选择 MCT Defaults，也不要在脚本名称或参数中加入 `def`**，这两种方式会禁用脚本的安装介质修改。
+4. 安装前备份数据，并准备对应 Mac 机型的 Boot Camp Windows 支持软件（驱动）。分区和启动方式需要根据具体机型确认。
+
+绕过 TPM 2.0 检查不会补齐 CPU 缺失的指令、修复驱动或解决固件兼容问题。脚本现有绕过方法在 **26H2 + Intel Mac** 上尚未进行实机验证；这些步骤描述的是可尝试的流程，不是已验证的机型支持承诺。
+
+Apple 的 [Boot Camp 官方安装指南](https://support.apple.com/en-gb/102622) 针对 Intel Mac 上的 Windows 10。Windows 11 官方仍要求 [TPM 2.0 等硬件条件](https://learn.microsoft.com/en-gb/windows/whats-new/windows-11-requirements)，本节属于非官方安装尝试方案。
 
 ## 版本列表
 
