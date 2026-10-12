@@ -10,7 +10,7 @@
 ![Architecture x64](https://img.shields.io/badge/26H2-x64-555555?style=flat-square)
 [![License MIT](https://img.shields.io/badge/License-MIT-2EA44F?style=flat-square)](LICENSE)
 
-[简体中文](#chinese) · [English](#english) · [下载 ZIP / Download ZIP](https://github.com/a317634186/MediaCreationTool.bat/archive/refs/heads/main.zip)
+[简体中文](#chinese) · [English](#english) · [下载 ZIP / Download ZIP](https://github.com/a317634186/MediaCreationTool.Windows11-26H2/archive/refs/heads/main.zip)
 
 </div>
 
@@ -29,7 +29,7 @@
 
 ### 快速开始
 
-1. [下载 ZIP](https://github.com/a317634186/MediaCreationTool.bat/archive/refs/heads/main.zip)，完整解压后运行 `MediaCreationTool.bat`。
+1. [下载 ZIP](https://github.com/a317634186/MediaCreationTool.Windows11-26H2/archive/refs/heads/main.zip)，完整解压后运行 `MediaCreationTool.bat`。
 2. 选择 **11_26H2**（默认版本）。
 3. 需要原版安装介质时选择 **MCT Defaults**，按提示选择语言和版本。
 4. 选择 **ISO 文件**保存镜像，或选择 **USB 闪存驱动器**制作安装盘。
@@ -123,7 +123,7 @@ The script includes workarounds for TPM 2.0 and other setup checks, allowing use
 
 ### Quick start
 
-1. [Download the ZIP](https://github.com/a317634186/MediaCreationTool.bat/archive/refs/heads/main.zip), extract it completely, and run `MediaCreationTool.bat`.
+1. [Download the ZIP](https://github.com/a317634186/MediaCreationTool.Windows11-26H2/archive/refs/heads/main.zip), extract it completely, and run `MediaCreationTool.bat`.
 2. Select **11_26H2**, the default version.
 3. For media without the script's setup modifications, choose **MCT Defaults**, then select your language and edition.
 4. Choose **ISO file** to save an image, or **USB flash drive** to create installation media.
